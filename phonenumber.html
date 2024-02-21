@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <style>
+        @keyframes anime {
+            0%{background-color: black;
+                display: none;
+            }
+            25%{background-color: green;
+                transform: translateY(-100px);
+                color: white;
+            }
+        }
+        .anime{
+            animation: anime 2s;
+        }
+    </style>
+    <div
+      class="col-6 mx-auto rounded p-3 border border-2 border-success text-center my-3 shadow-sm anime"
+    >
+      <h1 class="text-success display-5 fw-bold mb-4">
+        Phone Number Identifier
+      </h1>
+      <input
+        id="phoneNo"
+        type="tel"
+        placeholder="input your phone number"
+        class="form-control mb-3"
+      />
+      <button
+        class="btn btn-success fw-bold px-4 py-2"
+        onclick="identifyProvider()"
+      >
+        Network Provider
+      </button>
+    </div>
+
+    <div id="display">
+        
+    </div>
+
+    <script>
+      function identifyProvider() {
+        const phoneNumber = document.getElementById("phoneNo").value;
+        // console.log(phoneNumber)
+        const mtnRegex = /^\+?234[7-9][0,1][3,6][\d]{7}/;
+        const mtnCheck = /^0[7-9][0-1][3,6][\d]{7}/;
+        const airtelRegex = /^\+?234[7-9][0,1][2,8][\d]{7}/;
+        const airtelCheck = /^0[7-9][0-1][2,8][\d]{7}/;
+        const gloRegex = /^\+?234[7-9][0,1][5,7][\d]{7}/;
+        const gloCheck = /^0[7-9][0-1][5,7][\d]{7}/;
+        const etisalatRegex = /^\+?234[7-9][0,1][9][\d]{7}/;
+        const etisalatCheck = /^0[7-9][0-1][9][\d]{7}/;
+
+        if (mtnRegex.test(phoneNumber) || mtnCheck.test(phoneNumber)) {
+          alert("This is an MTN line");
+        } else if (
+          airtelRegex.test(phoneNumber) ||
+          airtelCheck.test(phoneNumber)
+        ) {
+          alert("This is an Airtel line");
+        } else if (gloRegex.test(phoneNumber) || gloCheck.test(phoneNumber)) {
+          alert("This is a Glo line");
+        } else if (
+          etisalatRegex.test(phoneNumber) ||
+          etisalatCheck.test(phoneNumber)
+        ) {
+          alert("This is an Etisalat line");
+        } else {
+          alert("This phone number is not recognized");
+        }
+      }
+
+      
+    </script>
+  </body>
+</html>
